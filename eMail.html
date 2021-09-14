@@ -13,6 +13,7 @@ body{
     background:url("image/love.webp") no-repeat;
     background-size: 100% 100%;
     opacity: 0.85;
+    position: relative;
 }    
 .myHeart{
     position:relative;
@@ -83,6 +84,14 @@ body{
  left:0;
  display: none; 
 }
+.date{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-size: 32px;
+    font-weight: bold;
+    display: none;
+}
 </style>   
 </head>  
 <body>
@@ -99,6 +108,11 @@ body{
     <h1 class="wqs">王秋霜</h1> 
     <canvas id="fireworks">
     </canvas> 
+    <p class="date">
+        <span>仵文豪</span>
+        <br/>
+        <span>2021年9月15日</span>
+    </p>
 </body>  
 </html>
 <script type="text/javascript"> 
@@ -109,12 +123,13 @@ body{
             audio.autoplay = 'autoplay';
             audio.loop = 'loop';
             document.body.appendChild(audio)
-        },5000)           
+        },4000)           
         fireworks = document.getElementById("fireworks");
         myHeart = document.querySelector(".myHeart");
         wwh = document.querySelector(".wwh");
         wqs = document.querySelector(".wqs");
-        time = document.querySelector(".time");  
+        time = document.querySelector(".time"); 
+        date = document.querySelector(".date"); 
         fws = fireworks.getContext("2d"); 
         fwsWidth = fireworks.width = window.innerWidth; 
         fwsHeight = fireworks.height = window.innerHeight; 
@@ -207,7 +222,10 @@ body{
                         }
                         content += split1[timeUp-241]
                     } 
-                    if(timeUp === 240) {
+                    if(timeUp<241 && timeUp>236) {
+                        content = content
+                    }
+                    if(timeUp === 236) {
                         content = ''
                     }
                     if (timeUp<234){
@@ -231,6 +249,7 @@ body{
                 myHeart.style.display = 'block'
                 wwh.style.display = 'block'
                 wqs.style.display = 'block'
+                date.style.display = 'block'
                 clearInterval(timer)
             }
             num = Math.floor(Math.random()*(window.innerWidth))
